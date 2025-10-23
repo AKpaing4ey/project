@@ -1,0 +1,85 @@
+<div class="grid">
+    <div class="col-12 xl:col-12">
+        <div class="col-23 xl:col-12">
+            <div class="card">
+                <h5>
+                    <b>Class</b>
+                </h5>
+                <p-toast key="tst"></p-toast>
+                <div class="p-toolbar-group-right mb-3" style="display: flex; justify-content: flex-end; width: 100%;">
+                    <button pButton type="button" label="New Class" icon="pi pi-plus" class="mr-2"
+                        (click)="openDialog()"></button>
+                </div>
+                <p-table #dt [value]="Class" [paginator]="true" [rows]="5" responsiveLayout="scroll"
+                    [tableStyle]="{'min-width': '70rem'}" [rowsPerPageOptions]="[5, 10, 20,40,80,100]"
+                     [resizableColumns]="true" [(selection)]="selectedProduct"
+                    >
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="name">Class Name <p-sortIcon field="name"></p-sortIcon></th>
+                            <th pSortableColumn="since">Created Date <p-sortIcon field="since"></p-sortIcon></th>
+                            <th>Actions</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-system>
+                        <tr [pSelectableRow]="system">
+                            <td>{{ system.name }}</td>
+                            <td>{{ system.createAt | date }}</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                            class="p-button-rounded p-button-primary"
+                                            (click)="editProduct(system)"></button>
+
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                        (click)="deleteProduct(system.id)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+            <p-dialog [(visible)]="productDialog" [maximizable]="true" [style]="{width: '450px'}" [modal]="true"
+                class="p-fluid">
+                <ng-template pTemplate="header">
+                    <span *ngIf="!addOrUpdate"><b>Add New Class</b></span>
+                    <span *ngIf="addOrUpdate"><b>Edit Class</b></span>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <form [formGroup]="formGroup">
+                        <div class="field">
+                            <label for="class">Class</label>
+                            <input type="text" pInputText id="class" [(ngModel)]="classes" required autofocus
+                                [ngClass]="{'ng-invalid ng-dirty' : submitted && !classes}" />
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !classes">Class is required.</small>
+                        </div>
+
+                    </form>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                        (click)="hideDialog()"></button>
+                    <button pButton pRipple label="Save" *ngIf="!addOrUpdate" icon="pi pi-check" class="p-button-text"
+                        [disabled]="disabled" (click)="saveProduct()"></button>
+                    <button pButton pRipple label="Update" icon="pi pi-check" *ngIf="addOrUpdate" class="p-button-text"
+                        [disabled]="disabled" (click)="updateProduct()"></button>
+                </ng-template>
+            </p-dialog>
+
+            <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+                <div class="flex align-items-center justify-content-center">
+                    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                    <span>Are you sure you want to delete?</span>
+                </div>
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+                        (click)="deleteProductDialog = false"></button>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
+                        (click)="confirmDelete()"></button>
+                </ng-template>
+            </p-dialog>
+
+        </div>
+    </div>
+</div>

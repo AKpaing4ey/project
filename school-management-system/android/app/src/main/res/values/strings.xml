@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Shwe Taik</string>
+    <string name="title_activity_main">Shwe Taik</string>
+    <string name="package_name">com.shwetaik.apps</string>
+    <string name="custom_url_scheme">com.shwetaik.apps</string>
+</resources>

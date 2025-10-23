@@ -1,0 +1,69 @@
+<div class="announcement-page">
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section text-center mb-4">
+            <div class="school-logo mb-3">
+                <img src="assets/pj_assets/school-logo.png" alt="School Logo" height="80" class="mb-2">
+            </div>
+            <h2 class="text-primary mb-2">
+                <i class="pi pi-bullhorn mr-2"></i>
+                Important Announcements
+            </h2>
+            <p class="text-600">Please read the following announcements carefully</p>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="loading" class="text-center p-4">
+            <i class="pi pi-spin pi-spinner text-primary text-2xl mb-2"></i>
+            <p class="text-600">Loading announcements...</p>
+        </div>
+
+        <!-- No Announcements -->
+        <div *ngIf="!loading && announcements.length === 0" class="text-center p-4">
+            <i class="pi pi-info-circle text-blue-500 text-2xl mb-2"></i>
+            <p class="text-600 mb-3">No active announcements at the moment.</p>
+            <button 
+                pButton 
+                type="button" 
+                label="Continue to Check-In" 
+                icon="pi pi-sign-in" 
+                class="p-button-primary"
+                (click)="goToCheckInOut()">
+            </button>
+        </div>
+
+        <!-- Announcements List -->
+        <div *ngIf="!loading && announcements.length > 0" class="announcements-container">
+            <div *ngFor="let announcement of announcements; let i = index" class="announcement-card mb-4">
+                <div class="card p-4">
+                    <div class="announcement-header mb-3">
+                        <div class="flex align-items-center">
+                            <i class="pi pi-bullhorn text-primary text-xl mr-2"></i>
+                            <h4 class="text-primary mb-0">{{ announcement.title }}</h4>
+                        </div>
+                        <div class="announcement-date text-sm text-500 mt-1">
+                            <i class="pi pi-calendar mr-1"></i>
+                            {{ formatDate(announcement.since) }}
+                        </div>
+                    </div>
+                    
+                    <div class="announcement-content">
+                        <div [innerHTML]="announcement.content" class="content-html"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mt-4">
+                <button 
+                    pButton 
+                    type="button" 
+                    label="I Have Read All Announcements" 
+                    icon="pi pi-check" 
+                    class="p-button-success mr-2"
+                    (click)="closeAnnouncements()">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

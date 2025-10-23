@@ -1,0 +1,86 @@
+.announcement-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.school-logo img {
+    border-radius: 8px;
+}
+
+.announcements-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-card {
+    border-left: 4px solid var(--primary-color);
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.announcement-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.announcement-header {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1rem;
+}
+
+.announcement-content {
+    margin-top: 1rem;
+}
+
+.content-html {
+    line-height: 1.6;
+    color: #333;
+}
+
+.content-html p {
+    margin-bottom: 1rem;
+}
+
+.content-html strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.content-html span {
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .announcement-page {
+        padding: 1rem 0;
+    }
+    
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .header-section,
+    .announcements-container {
+        padding: 1rem;
+    }
+}
